@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { AuthShell } from "@/components/AuthShell";
 import { RegisterForm } from "@/components/auth/RegisterForm";
 import { auth } from "@/lib/auth";
 
@@ -10,18 +11,22 @@ export default async function RegisterPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-50 px-6 py-12">
-      <section className="w-full max-w-sm">
-        <div className="mb-8">
-          <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
-            Get started
+    <AuthShell
+      eyebrow="Get started"
+      title="Create an account for the protected app."
+      description="Registration stores your profile in SQLite through Prisma and signs you into the workspace when setup is complete."
+    >
+      <section>
+        <div className="mb-7">
+          <h2 className="text-2xl font-semibold text-zinc-950">
+            Create account
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-zinc-600">
+            Passwords are hashed before they are saved.
           </p>
-          <h1 className="mt-2 text-3xl font-semibold text-zinc-950">
-            Create your account
-          </h1>
         </div>
         <RegisterForm />
       </section>
-    </main>
+    </AuthShell>
   );
 }

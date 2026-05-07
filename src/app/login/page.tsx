@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
+import { AuthShell } from "@/components/AuthShell";
 import { LoginForm } from "@/components/auth/LoginForm";
 
 export default async function LoginPage() {
@@ -11,20 +12,22 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-50 px-6 py-12">
-      <section className="w-full max-w-sm">
-        <div className="mb-8">
-          <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
-            Welcome back
+    <AuthShell
+      eyebrow="Welcome back"
+      title="Sign in and continue your workspace."
+      description="Use your credentials to access the protected dashboard and keep building from the authenticated app shell."
+    >
+      <section>
+        <div className="mb-7">
+          <h2 className="text-2xl font-semibold text-zinc-950">Sign in</h2>
+          <p className="mt-2 text-sm leading-6 text-zinc-600">
+            Enter the account details you used when registering.
           </p>
-          <h1 className="mt-2 text-3xl font-semibold text-zinc-950">
-            Sign in to your account
-          </h1>
         </div>
         <Suspense>
           <LoginForm />
         </Suspense>
       </section>
-    </main>
+    </AuthShell>
   );
 }
